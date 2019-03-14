@@ -1,5 +1,5 @@
 from django import forms
-from Log.models import LogEntry
+from Log.models import LogEntry, Project
 from martor.fields import MartorFormField
 
 
@@ -11,3 +11,9 @@ class NewEntryForm(forms.ModelForm):
             'content': MartorFormField,
             'user': forms.HiddenInput,
         }
+
+
+class NewProjectForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = '__all__'
