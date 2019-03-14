@@ -5,7 +5,7 @@
 {% if projects %}
     <ul>
         {% for project in projects %}
-            <li>{{ project.name }}</li>
+            <li>{% include 'partials/project-listitem.html' with project=project %}</li>
         {% endfor %}
     </ul>
 {% endif %}

@@ -8,9 +8,8 @@ def index_view(request):
         form = NewEntryForm(request.POST, initial={'user': request.user})
         if form.is_valid():
             form.save()
-    else:
-        form = NewEntryForm(initial={'user': request.user})
-    context = {'form': form,
+
+    context = {'form': NewEntryForm(initial={'user': request.user}),
                'title': 'Project Log',
                'logentries': LogEntry.objects.filter(user=request.user).all(),
                }

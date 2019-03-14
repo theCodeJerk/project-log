@@ -20,10 +20,11 @@ class LogEntry(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="logentry_user")
     creation_dt = models.DateTimeField(auto_now_add=True)
     project = models.ForeignKey(Project, null=True, blank=True, on_delete=models.CASCADE)
-    content = MartorField()
+    content = MartorField(null=False, blank=False)
 
     def __str__(self):
         return self.content
 
     class Meta():
         db_table = 'pl_logentry'
+        ordering = ['-creation_dt',]
