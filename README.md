@@ -15,4 +15,4 @@ LogEntries can be filtered by Project and Date Range.
 
 There is no header.  A simple footer to mark the bottom of the page.
 
-A left side bar shows links to 'home', the dashboard page, a top-level link to the projects page, new project and a list of all the available projects.
+A left side bar shows the user link, links to 'home', the dashboard page, a top-level link to the projects page, new project and a list of all the available projects.

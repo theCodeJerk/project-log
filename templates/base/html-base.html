@@ -1,0 +1,14 @@
+{% extends 'base/bootstrap.html' %}
+
+{% load bootstrap4 %}
+{% load martortags %}
+
+{% block content %}
+    <div class="Site">
+
+        {% autoescape off %}{% bootstrap_messages %}{% endautoescape %}
+
+        {% block pagecontent %}{% endblock %}
+    </div>
+
+{% endblock %}
