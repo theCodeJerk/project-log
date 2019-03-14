@@ -1,0 +1,7 @@
+{% load martortags %}
+
+{% for entry in logentries %}
+    <div class="container-fluid">
+        {{ entry.content|safe_markdown }}
+    </div>
+{% endfor %}

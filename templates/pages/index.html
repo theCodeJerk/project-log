@@ -2,41 +2,7 @@
 {% load bootstrap4 %}
 {% load martortags %}
 
-{% block sidepanel %}
-    <div class="sidebar">
-      <nav class="sidebar-nav">
-        <ul class="nav">
-          <li class="nav-title">Project Log</li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'index' %}">
-              <i class="nav-icon cui-speedometer"></i>Home
-            </a>
-          </li>
-            <li class="nav-item">
-            <a class="nav-link" href="#">
-              <i class="nav-icon cui-speedometer"></i>Projects
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-{% endblock %}
-
 {% block page %}
-    <div class="container-fluid">
-        <form class="ui form" method="post" name="new_entry_form" id="new_entry_form" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="field">
-                {{ form.as_p }}
-            </div>
-            <div class="field">
-                <button>Submit</button>
-            </div>
-        </form>
-    </div>
-    {% for entry in logentries %}
-        <div class="container-fluid">
-            {{ entry.content|safe_markdown }}
-        </div>
-    {% endfor %}
+    {% include 'partials/entry-panel.html' %}
+    {% include 'partials/logentries.html' %}
 {% endblock %}

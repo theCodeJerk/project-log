@@ -8,7 +8,9 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-2">
-                    {% block sidepanel %}{% endblock %}
+                    {% block sidepanel %}
+                        {% include 'partials/navbar.html' %}
+                    {% endblock %}
                 </div>
                 <div class="col-sm-10">
                     {% block page %}{% endblock %}
