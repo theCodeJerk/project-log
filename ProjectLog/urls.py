@@ -26,9 +26,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/login/', LoginView.as_view(), name='login'),
     path('accounts/logout/', LogoutView.as_view(), name='logout'),
-    path('martor/', include('martor.urls')),
     path('projects/', login_required(projects_view), name='projects'),
     path('projects/add/', login_required(add_project_view), name='add-project'),
+    path('martor/', include('martor.urls')),
     path('', login_required(index_view), name='index'),
 ]
 

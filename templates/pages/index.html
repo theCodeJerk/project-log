@@ -3,6 +3,6 @@
 {% load martortags %}
 
 {% block page %}
-    {% include 'partials/entry-panel.html' with button_name='Add Entry' %}
+    {% include 'partials/entry-panel.html' with button_name='Add Entry' csrf_token=csrf_token %}
     {% include 'partials/logentries.html' %}
 {% endblock %}
