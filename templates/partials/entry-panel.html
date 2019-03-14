@@ -1,11 +1,11 @@
 <div class="container-fluid">
-    <form class="ui form" method="post" name="new_entry_form" id="new_entry_form" enctype="multipart/form-data">
+    <form class="ui form" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="field">
             {{ form.as_p }}
         </div>
         <div class="field">
-            <button>Submit</button>
+            <button>{{ button_name }}</button>
         </div>
     </form>
 </div>

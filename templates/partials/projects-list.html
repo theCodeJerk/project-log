@@ -1,0 +1,13 @@
+{% load bootstrap4 %}
+{% load martortags %}
+{% load static %}
+
+{% include 'partials/entry-panel.html' with button_name='Add' %}
+
+{% if projects %}
+    <ul>
+        {% for project in projects %}
+            <li>{{ project.name }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
