@@ -17,3 +17,7 @@ class NewProjectForm(forms.ModelForm):
     class Meta:
         model = Project
         fields = '__all__'
+        widgets = {
+            'content': MartorFormField,
+            'user': forms.HiddenInput,
+        }

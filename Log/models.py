@@ -4,8 +4,8 @@ from martor.models import MartorField
 
 
 class Project(models.Model):
-    name = models.CharField(max_length=64, blank=False, null=False)
-    description = models.CharField(max_length=1024, blank=True, null=True)
+    name = models.CharField(unique=True, max_length=64, blank=False, null=False)
+    description = MartorField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     creation_dt = models.DateTimeField(auto_now_add=True)
 
