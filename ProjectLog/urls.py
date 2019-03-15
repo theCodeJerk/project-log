@@ -20,7 +20,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.decorators import login_required
 from django.urls import path, include, reverse
 from Log.views import * #index_view, projects_view, add_project_view
-
+from martor.urls import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -36,8 +36,8 @@ urlpatterns = [
     path('entry/edit/<entry_id>', login_required(edit_entry_view), name='edit-entry'),
     path('project/edit/<project_id>', login_required(edit_project_view), name='edit-project'),
     path('project/delete/<project_id>', login_required(delete_project_view), name='delete-project'),
-    path('martor/', include('martor.urls')),
     path('api/uploader/', login_required(markdown_uploader), name='markdown_uploader_page'),
+    path('martor/', include('martor.urls')),
     path('', login_required(index_view), name='index'),
 ]
 
