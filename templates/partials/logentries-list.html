@@ -1,0 +1,6 @@
+{% load martortags %}
+{% load bootstrap4 %}
+
+{% for entry in logentries %}
+    {% include 'partials/logentry-listitem.html' %}
+{% endfor %}

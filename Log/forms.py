@@ -21,3 +21,12 @@ class NewProjectForm(forms.ModelForm):
             'content': MartorFormField,
             'user': forms.HiddenInput,
         }
+
+
+class DeleteEntryForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = 'id',
+        widgets = {
+            'id': forms.HiddenInput,
+        }

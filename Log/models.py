@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.contrib.auth.models import User
 from martor.models import MartorField
 
@@ -28,3 +29,10 @@ class LogEntry(models.Model):
     class Meta():
         db_table = 'pl_logentry'
         ordering = ['-creation_dt',]
+
+    def edit_url(self):
+        pass
+
+    def delete_url(self):
+        return reverse('delete-entry', args=[self.pk] )
+        pass

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from Log.models import LogEntry, Project
-from Log.forms import NewEntryForm, NewProjectForm
+from Log.forms import *
 
 
 def index_view(request):
@@ -17,7 +17,7 @@ def index_view(request):
 
 
 def projects_view(request):
-    if request.method == "POST":
+    if request.method == 'POST':
         form = NewProjectForm(request.POST, initial={'user': request.user})
         if form.is_valid():
             form.save()
@@ -42,3 +42,22 @@ def add_project_view(request):
                    'projects': Project.objects.filter(user=request.user).all(),
                    }
         return render(request, 'pages/add-project.html', context)
+
+
+def delete_entry_view(request, entry_id):
+    entry = LogEntry.objects.get(id=entry_id)
+    if request.method == 'POST':
+        form = DeleteEntryForm(request.POST)
+        if form.is_valid():
+            LogEntry.delete(entry)
+            return redirect('index')
+    else:
+        form = DeleteEntryForm(instance=entry)
+
+    context = {'form': form,
+               'title': 'Projects',
+               'projects': Project.objects.filter(user=request.user).all(),
+               'entry': entry,
+               'disable_actions': True,
+               }
+    return render(request, 'pages/delete-entry.html', context)
