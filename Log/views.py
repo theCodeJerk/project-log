@@ -153,7 +153,7 @@ def markdown_uploader(request):
                 return HttpResponse(
                     data, content_type='application/json', status=405)
 
-            if image._size > settings.MAX_IMAGE_UPLOAD_SIZE:
+            if image.size > settings.MAX_IMAGE_UPLOAD_SIZE:
                 to_MB = settings.MAX_IMAGE_UPLOAD_SIZE / (1024 * 1024)
                 data = json.dumps({
                     'status': 405,

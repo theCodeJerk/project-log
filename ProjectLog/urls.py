@@ -37,7 +37,7 @@ urlpatterns = [
     path('project/edit/<project_id>', login_required(edit_project_view), name='edit-project'),
     path('project/delete/<project_id>', login_required(delete_project_view), name='delete-project'),
     path('martor/', include('martor.urls')),
-    path('api/uploader/', markdown_uploader, name='markdown_uploader_page'),
+    path('api/uploader/', login_required(markdown_uploader), name='markdown_uploader_page'),
     path('', login_required(index_view), name='index'),
 ]
 
