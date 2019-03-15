@@ -1,7 +1,25 @@
 {% load martortags %}
 
 {% for entry in logentries %}
-    <div class="container-fluid">
-        {{ entry.content|safe_markdown }}
+    <div class="container-fluid panel-group log-entry">
+        <div class="row panel panel-default">
+            <div class="col-sm-3 panel-body">
+                {% if entry.project %}
+                    <div class="row">
+                        {{ entry.project }}
+                    </div>
+                    <div class="row">
+                        {{ entry.creation_dt }}
+                    </div>
+                {% else %}
+                    <div class="row">
+                        {{ entry.creation_dt }}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col-sm-9 panel-body">
+                {{ entry.content|safe_markdown }}
+            </div>
+        </div>
     </div>
 {% endfor %}
