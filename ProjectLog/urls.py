@@ -18,14 +18,18 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.decorators import login_required
-from django.urls import path, include
+from django.urls import path, include, reverse
 from Log.views import * #index_view, projects_view, add_project_view
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/login/', LoginView.as_view(), name='login'),
-    path('accounts/logout/', LogoutView.as_view(), name='logout'),
+    path('accounts/login/', LoginView.as_view(
+            template_name='registration/login.html',
+        ),
+        name = 'login',
+        ),
+    path('accounts/logout/', login_required(LogoutView.as_view()), name='logout'),
     path('projects/', login_required(projects_view), name='projects'),
     path('projects/add/', login_required(add_project_view), name='add-project'),
     path('entry/delete/<entry_id>', login_required(delete_entry_view), name='delete-entry'),
@@ -33,6 +37,7 @@ urlpatterns = [
     path('project/edit/<project_id>', login_required(edit_project_view), name='edit-project'),
     path('project/delete/<project_id>', login_required(delete_project_view), name='delete-project'),
     path('martor/', include('martor.urls')),
+    path('api/uploader/', markdown_uploader, name='markdown_uploader_page'),
     path('', login_required(index_view), name='index'),
 ]
 

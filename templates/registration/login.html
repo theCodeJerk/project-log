@@ -1,8 +1,10 @@
 {% extends 'base/page-base.html' %}
+{% load bootstrap4 %}
+{% load martortags %}
 
 {% block title %}Login{% endblock %}
 
-{% block content %}
+{% block page %}
   <h2>Login</h2>
   <form method="post">
     {% csrf_token %}
