@@ -61,3 +61,22 @@ def delete_entry_view(request, entry_id):
                'disable_actions': True,
                }
     return render(request, 'pages/delete-entry.html', context)
+
+
+def edit_entry_view(request, entry_id):
+    entry = LogEntry.objects.get(id=entry_id)
+    if request.method == 'POST':
+        form = EditEntryForm(request.POST, instance=entry)
+        if form.is_valid():
+            form.instance.save()
+            return redirect('index')
+    else:
+        form = EditEntryForm(instance=entry)
+
+    context = {'form': form,
+               'title': 'Projects',
+               'projects': Project.objects.filter(user=request.user).all(),
+               'entry': entry,
+               'disable_actions': True,
+               }
+    return render(request, 'pages/edit-entry.html', context)

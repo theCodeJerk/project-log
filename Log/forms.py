@@ -25,8 +25,18 @@ class NewProjectForm(forms.ModelForm):
 
 class DeleteEntryForm(forms.ModelForm):
     class Meta:
-        model = Project
+        model = LogEntry
         fields = 'id',
         widgets = {
             'id': forms.HiddenInput,
+        }
+
+
+class EditEntryForm(forms.ModelForm):
+    class Meta:
+        model = LogEntry
+        fields = '__all__'
+        widgets = {
+            'content': MartorFormField,
+            'user': forms.HiddenInput,
         }

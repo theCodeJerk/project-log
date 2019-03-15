@@ -1,0 +1,9 @@
+{% extends 'base/page-base.html' %}
+{% load bootstrap4 %}
+{% load martortags %}
+
+{% block page %}
+    <h1>Edit Entry</h1>
+    {% include 'partials/logentry-listitem.html' %}
+    {% include 'partials/entry-panel.html' with button_name='Update Entry' csrf_token=csrf_token %}
+{% endblock %}

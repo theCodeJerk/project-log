@@ -31,8 +31,7 @@ class LogEntry(models.Model):
         ordering = ['-creation_dt',]
 
     def edit_url(self):
-        pass
+        return reverse('edit-entry', args=[self.pk])
 
     def delete_url(self):
         return reverse('delete-entry', args=[self.pk] )
-        pass
