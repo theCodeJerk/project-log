@@ -16,6 +16,12 @@ class Project(models.Model):
     class Meta():
         db_table = 'pl_project'
 
+    def edit_url(self):
+        return reverse('edit-project', args=[self.pk])
+
+    def delete_url(self):
+        return reverse('delete-project', args=[self.pk] )
+
 
 class LogEntry(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="logentry_user")

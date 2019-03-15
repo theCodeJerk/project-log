@@ -40,3 +40,23 @@ class EditEntryForm(forms.ModelForm):
             'content': MartorFormField,
             'user': forms.HiddenInput,
         }
+
+
+class EditProjectForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = '__all__'
+        widgets = {
+            'name': forms.TextInput,
+            'description': MartorFormField,
+            'user': forms.HiddenInput,
+        }
+
+
+class DeleteProjectForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = 'id',
+        widgets = {
+            'id': forms.HiddenInput,
+        }

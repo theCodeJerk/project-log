@@ -29,7 +29,9 @@ urlpatterns = [
     path('projects/', login_required(projects_view), name='projects'),
     path('projects/add/', login_required(add_project_view), name='add-project'),
     path('entry/delete/<entry_id>', login_required(delete_entry_view), name='delete-entry'),
-    path('entry/<entry_id>', login_required(edit_entry_view), name='edit-entry'),
+    path('entry/edit/<entry_id>', login_required(edit_entry_view), name='edit-entry'),
+    path('project/edit/<project_id>', login_required(edit_project_view), name='edit-project'),
+    path('project/delete/<project_id>', login_required(delete_project_view), name='delete-project'),
     path('martor/', include('martor.urls')),
     path('', login_required(index_view), name='index'),
 ]

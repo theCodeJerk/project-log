@@ -1,5 +1,39 @@
-{% load bootstrap4 %}
 {% load martortags %}
+{% load bootstrap4 %}
 {% load static %}
 
-{{ project.name }}
+<div class="container-fluid panel-group log-entry">
+    <div class="row">
+        <h2>{{ project.name }}</h2>
+    </div>
+    <div class="row panel panel-default">
+        <div class="col-sm-3 panel-body">
+            <div class="row">
+                {{ project.creation_dt }}
+            </div>
+        </div>
+        {% if disable_actions %}
+            <div class="col-sm-9 panel-body">
+                {{ project.description|safe_markdown }}
+            </div>
+        {% else %}
+            <div class="col-sm-7 panel-body">
+                {{ project.description|safe_markdown }}
+            </div>
+            <div class="col-sm-2 panel-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <a href="{{ project.edit_url }}">Edit</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <a href="{{ project.delete_url }}">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>

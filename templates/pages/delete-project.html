@@ -1,0 +1,10 @@
+{% extends 'base/page-base.html' %}
+{% load bootstrap4 %}
+{% load martortags %}
+
+{% block page %}
+    <h1>Delete Project</h1>
+    <p>Are you sure you want to delete this Project?</p>
+    {% include 'partials/project-listitem.html' %}
+    {% include 'partials/entry-panel.html' with button_name='Delete Project' csrf_token=csrf_token %}
+{% endblock %}

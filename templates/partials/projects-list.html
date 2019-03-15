@@ -3,9 +3,7 @@
 {% load static %}
 
 {% if projects %}
-    <ul>
-        {% for project in projects %}
-            <li>{% include 'partials/project-listitem.html' with project=project %}</li>
-        {% endfor %}
-    </ul>
+    {% for project in projects %}
+        {% include 'partials/project-listitem.html' with project=project %}
+    {% endfor %}
 {% endif %}

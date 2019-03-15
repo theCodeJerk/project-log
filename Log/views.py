@@ -80,3 +80,38 @@ def edit_entry_view(request, entry_id):
                'disable_actions': True,
                }
     return render(request, 'pages/edit-entry.html', context)
+
+
+def edit_project_view(request, project_id):
+    project = Project.objects.get(id=project_id)
+    if request.method == 'POST':
+        form = EditProjectForm(request.POST, instance=project)
+        if form.is_valid():
+            form.instance.save()
+            return redirect('projects')
+    else:
+        form = EditProjectForm(instance=project)
+
+    context = {'form': form,
+               'title': 'Edit Project',
+               'project': project,
+               }
+    return render(request, 'pages/edit-project.html', context)
+
+
+def delete_project_view(request, project_id):
+    project = Project.objects.get(id=project_id)
+    if request.method == 'POST':
+        form = DeleteProjectForm(request.POST)
+        if form.is_valid():
+            Project.delete(project)
+            return redirect('projects')
+    else:
+        form = DeleteProjectForm(instance=project)
+
+    context = {'form': form,
+               'title': 'Delete Project',
+               'project': project,
+               'disable_actions': True,
+               }
+    return render(request, 'pages/delete-project.html', context)
