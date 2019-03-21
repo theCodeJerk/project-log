@@ -6,7 +6,7 @@ from django.core.files.base import ContentFile
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from martor.utils import LazyEncoder
-from ProjectLog import settings
+from django.conf import settings
 from Log.models import LogEntry, Project
 from Log.forms import *
 from django.utils.translation import ugettext_lazy as _

@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% load static %}
 
-<div class="container-fluid input-group input-group-sm">
+<div class="container-fluid input-group input-group-sm entry-panel">
     <form class="ui form" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_table }}

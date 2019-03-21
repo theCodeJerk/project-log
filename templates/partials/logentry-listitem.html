@@ -20,11 +20,11 @@
             {% endif %}
         </div>
         {% if disable_actions %}
-            <div class="col-sm-9 panel-body">
+            <div class="col-sm-9 panel-body entry-content">
                 {{ entry.content|safe_markdown }}
             </div>
         {% else %}
-            <div class="col-sm-7 panel-body">
+            <div class="col-sm-7 panel-body entry-content">
                 {{ entry.content|safe_markdown }}
             </div>
             <div class="col-sm-2 panel-body">

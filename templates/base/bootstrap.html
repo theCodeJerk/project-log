@@ -1,21 +1,27 @@
-{% extends 'bootstrap4/bootstrap4.html' %}
-{% load martortags %}
 {% load staticfiles %}
 {% load static %}
+{% load martortags %}
 
-{% block bootstrap4_extra_head %}
-    <title>{% block title %}{% endblock %}</title>
-  <link href="{% static 'plugins/css/ace.min.css' %}" type="text/css" media="all" rel="stylesheet" />
-  <link href="{% static 'plugins/css/semantic.min.css' %}" type="text/css" media="all" rel="stylesheet" />
-  <link href="{% static 'plugins/css/resizable.min.css' %}" type="text/css" media="all" rel="stylesheet" />
-  <link href="{% static 'martor/css/martor.min.css' %}" type="text/css" media="all" rel="stylesheet" />
-    <link rel="stylesheet" href="https://unpkg.com/@coreui/coreui/dist/css/coreui.min.css">
-<link rel="stylesheet" href="{% static 'Log/css/log.css' %}">
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
 
-    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/@coreui/coreui/dist/js/coreui.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+      <link href="{% static 'plugins/css/ace.min.css' %}" type="text/css" media="all" rel="stylesheet" />
+      <link href="{% static 'plugins/css/semantic.min.css' %}" type="text/css" media="all" rel="stylesheet" />
+      <link href="{% static 'plugins/css/resizable.min.css' %}" type="text/css" media="all" rel="stylesheet" />
+      <link href="{% static 'martor/css/martor.min.css' %}" type="text/css" media="all" rel="stylesheet" />
+        <link href="{% static 'Log/css/log.css' %}" type="text/css" media="all" rel="stylesheet" />
+      <script type="text/javascript" src="{% static 'plugins/js/jquery.min.js' %}"></script>
+    </head>
+    <body>
+
+    {% block content %}{% endblock %}
+
     <script type="text/javascript" src="{% static 'plugins/js/ace.js' %}"></script>
     <script type="text/javascript" src="{% static 'plugins/js/semantic.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'plugins/js/mode-markdown.js' %}"></script>
@@ -25,15 +31,6 @@
     <script type="text/javascript" src="{% static 'plugins/js/resizable.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'plugins/js/emojis.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'martor/js/martor.min.js' %}"></script>
-  <style>
-    .main-container {margin-top: 7em}
-  </style>
 
-  <script type="text/javascript" src="{% static 'plugins/js/jquery.min.js' %}"></script>
-{% endblock %}
-
-{% block bootstrap4_content %}
-{% block content %}{% endblock %}
-
-  {% block js %}{% endblock %}
-{% endblock %}
+    </body>
+</html>
