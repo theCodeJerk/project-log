@@ -1,10 +1,24 @@
 {% extends 'base/html-base.html' %}
-{% load bootstrap4 %}
+
+{% comment %}
+# templates/base/page-base.html
+
+This base template provides a left sidebar, content and footer panels.
+
+## Blocks
+```
+-- content (overriden from base/html-base.html template).
+    |-- sidepanel
+    |-- page
+    `-- footer
+```
+{% endcomment %}
+
 {% load martortags %}
 {% load static %}
 {% load staticfiles %}
 
-{% block pagecontent %}
+{% block content %}
     <div class="Site-content">
         <div class="container-fluid">
             <div class="row">
@@ -14,7 +28,6 @@
                     {% endblock %}
                 </div>
                 <div class="col-sm-10">
-                    {% include 'partials/messages.html' with messages=messages%}
                     {% block page %}{% endblock %}
                 </div>
             </div>
@@ -22,7 +35,7 @@
     </div>
      {% block footer %}
         <footer>
-            <p>Project Log &copy; 2019 hmcclungiii (The Code Jerk)</p>
+            <p>Project Log &copy; 2019 hmcclungiii (the Code Jerk)</p>
         </footer>
     {% endblock %}
 {% endblock %}

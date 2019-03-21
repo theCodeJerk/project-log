@@ -1,16 +1,106 @@
-{% extends 'base/bootstrap.html' %}
-{% load bootstrap4 %}
-{% load martortags %}
-{% load static %}
+{% comment %}
+# templates/base/html-base.html
+
+This is the base template for all html pages served by this app.
+
+## Variables
+
+The ```messages``` variable can be passed to this template and
+will be displayed at the top of the page.  Override the ```messages```
+block to change this behaviour.
+
+## Blocks
+```
+-- head
+    |-- bootstrap4
+    |-- martor-styles
+    |-- site-styles
+    |-- jquery
+    `-- extra-head
+-- body
+    |-- site
+    |   |-- messages
+    |   `-- content
+    |-- martor-scripts
+    `-- extra-body
+```
+
+When extending this template, you should only override
+the following three blocks.
+
+### extra-head
+This block is used to add extra css or scripts to the
+```head``` tag.
+
+### content
+This block is where you add your actual content.  This
+is usually the only block that will be overridden.
+
+### extra-body
+This block allows you to add extra scripts to the bottom
+of the rendered html, right before the ```</body>``` tag.
+
+{% endcomment %}
+
 {% load staticfiles %}
+{% load static %}
+{% load martortags %}
 
+<!DOCTYPE html>
+<html lang="en-us">
+    {% block head %}
+        <head>
+            {% block bootstrap4 %}
+                <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+            {% endblock %}
+            {% block martor-styles %}
+                <link href="{% static 'plugins/css/ace.min.css' %}" type="text/css" media="all" rel="stylesheet" />
+                <link href="{% static 'plugins/css/semantic.min.css' %}" type="text/css" media="all" rel="stylesheet" />
+                <link href="{% static 'plugins/css/resizable.min.css' %}" type="text/css" media="all" rel="stylesheet" />
+                <link href="{% static 'martor/css/martor.min.css' %}" type="text/css" media="all" rel="stylesheet" />
+            {% endblock %}
+            {% block site-styles %}
+                <link href="{% static 'Log/css/log.css' %}" type="text/css" media="all" rel="stylesheet" />
+            {% endblock %}
+            {% block jquery %}
+                <script type="text/javascript" src="{% static 'plugins/js/jquery.min.js' %}"></script>
+            {% endblock %}
+            {% block extra-head %}{% endblock %}
+        </head>
+    {% endblock %}
 
-{% block content %}
-    <div class="Site">
-
-        {% autoescape off %}{% bootstrap_messages %}{% endautoescape %}
-
-        {% block pagecontent %}{% endblock %}
-    </div>
-
-{% endblock %}
+    {% block body %}
+        <body>
+            {% block site %}
+                <div class="Site">
+                    {% block messages %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }}">  <!-- singular -->
+                                    <a class="close" data-dismiss="alert">×</a>
+                                    {{ message|safe }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endblock %}
+                    {% block content %}{% endblock %}
+                </div>
+            {% endblock %}
+            {% block martor-scripts %}
+                <script type="text/javascript" src="{% static 'plugins/js/ace.js' %}"></script>
+                <script type="text/javascript" src="{% static 'plugins/js/semantic.min.js' %}"></script>
+                <script type="text/javascript" src="{% static 'plugins/js/mode-markdown.js' %}"></script>
+                <script type="text/javascript" src="{% static 'plugins/js/ext-language_tools.js' %}"></script>
+                <script type="text/javascript" src="{% static 'plugins/js/theme-github.js' %}"></script>
+                <script type="text/javascript" src="{% static 'plugins/js/highlight.min.js' %}"></script>
+                <script type="text/javascript" src="{% static 'plugins/js/resizable.min.js' %}"></script>
+                <script type="text/javascript" src="{% static 'plugins/js/emojis.min.js' %}"></script>
+                <script type="text/javascript" src="{% static 'martor/js/martor.min.js' %}"></script>
+            {% endblock %}
+            {% block extra-body %}{% endblock %}
+        </body>
+    {% endblock %}
+</html>
