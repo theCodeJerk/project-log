@@ -54,8 +54,6 @@ settings.py
 # sqlite3
 *.sqlite3
 *.sqlite3_bak
-/46.101.202.82.tlp
-/openpsych_db.sqlite3
 /.idea/workspace.xml
 /.idea/watcherTasks.xml
 /.idea/*.iml
@@ -93,3 +91,9 @@ geckodriver.log
 venv/
 /venv
 /venv/
+
+# don't want the media folder, this is where images
+# in log entries are to be uploaded
+media/
+/media
+/media/
