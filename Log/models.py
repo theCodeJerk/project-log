@@ -13,14 +13,14 @@ class Project(models.Model):
     def __str__(self):
         return self.name
 
-    class Meta():
+    class Meta:
         db_table = 'pl_project'
 
     def edit_url(self):
         return reverse('edit-project', args=[self.pk])
 
     def delete_url(self):
-        return reverse('delete-project', args=[self.pk] )
+        return reverse('delete-project', args=[self.pk])
 
 
 class LogEntry(models.Model):
@@ -32,12 +32,12 @@ class LogEntry(models.Model):
     def __str__(self):
         return self.content
 
-    class Meta():
+    class Meta:
         db_table = 'pl_logentry'
-        ordering = ['-creation_dt',]
+        ordering = ['-creation_dt', ]
 
     def edit_url(self):
         return reverse('edit-entry', args=[self.pk])
 
     def delete_url(self):
-        return reverse('delete-entry', args=[self.pk] )
+        return reverse('delete-entry', args=[self.pk], )
