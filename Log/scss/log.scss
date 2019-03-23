@@ -1,0 +1,59 @@
+.Site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.Site-content {
+  flex: 1;
+}
+
+html:not([dir=rtl]) .sidebar {
+    margin-left: 0px;
+}
+
+.sidepanel {
+    padding: 0px;
+}
+
+.sidebar {
+    height: 100%;
+}
+
+.sidebar-nav {
+    width: 100% !important;
+    height: 100%;
+}
+
+.nav {
+    width: 100% !important;
+}
+
+.container-fluid {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.log-entry {
+    margin: 12px;
+    border-color: skyblue;
+    border-style: dotted;
+    border-width: 1px;
+    background-color: #fffaf3;
+    padding: 12px;
+    padding-left: 24px;
+}
+
+.nav-title {
+    font-size: large !important;
+}
+
+.entry-content {
+    font-size: large;
+}
+
+
+div#martor-content {
+    height: 100px;
+}
