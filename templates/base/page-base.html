@@ -8,6 +8,7 @@ This base template provides a left sidebar, content and footer panels.
 ## Blocks
 ```
 -- content (overriden from base/html-base.html template).
+    |-- header
     |-- sidepanel
     |-- page
     `-- footer
@@ -22,9 +23,16 @@ This base template provides a left sidebar, content and footer panels.
     <div class="Site-content">
         <div class="container-fluid">
             <div class="row">
+                <div class="col-sm-12">
+                    {% block header %}
+                        {% include 'partials/header.html' %}
+                    {% endblock %}
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-sm-2 sidepanel">
                     {% block sidepanel %}
-                        {% include 'partials/navbar.html' %}
+                        {% include 'partials/sidepanel.html' %}
                     {% endblock %}
                 </div>
                 <div class="col-sm-10">
@@ -33,9 +41,7 @@ This base template provides a left sidebar, content and footer panels.
             </div>
         </div>
     </div>
-     {% block footer %}
-        <footer>
-            <p>Project Log &copy; 2019 hmcclungiii (the Code Jerk)</p>
-        </footer>
+    {% block footer %}
+        {% include 'partials/footer.html' %}
     {% endblock %}
 {% endblock %}
