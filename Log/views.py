@@ -22,7 +22,6 @@ def index_view(request):
                'title': 'Project Log',
                'logentries': LogEntry.objects.filter(user=request.user).all(),
                'user': request.user,
-               'hide_sidepanel': True,
                }
     return render(request, 'pages/index.html', context)
 

@@ -13,24 +13,19 @@
 .body-row {
     flex: 1;
   padding: 0px;
-  margin-top: 6px;
+  margin-top: 54px;
+}
+
+#messages-block {
+  margin-top: 0px;
+}
+
+#page-block {
+  margin-top: 16px;
 }
 
 html:not([dir=rtl]) .sidebar {
     margin-left: 0px;
-}
-
-.sidepanel {
-    padding: 0px;
-}
-
-.sidebar {
-    height: 100%;
-}
-
-.sidebar-nav {
-    width: 100% !important;
-    height: 100%;
 }
 
 .nav {
