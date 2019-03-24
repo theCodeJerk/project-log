@@ -1,11 +1,19 @@
-.Site {
+.body-container {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  padding: 0;
 }
 
-.Site-content {
-  flex: 1;
+.header-row {
+    padding-left: 0px;
+  padding-right: 0px;
+  }
+
+.body-row {
+    flex: 1;
+  padding: 0px;
+  margin-top: 6px;
 }
 
 html:not([dir=rtl]) .sidebar {

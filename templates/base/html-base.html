@@ -75,7 +75,6 @@ of the rendered html, right before the ```</body>``` tag.
     {% block body %}
         <body>
             {% block site %}
-                <div class="Site">
                     {% block messages %}
                         {% if messages %}
                             {% for message in messages %}
@@ -87,7 +86,6 @@ of the rendered html, right before the ```</body>``` tag.
                         {% endif %}
                     {% endblock %}
                     {% block content %}{% endblock %}
-                </div>
             {% endblock %}
             {% block martor-scripts %}
                 <script type="text/javascript" src="{% static 'plugins/js/ace.js' %}"></script>
