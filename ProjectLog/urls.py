@@ -13,13 +13,12 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.decorators import login_required
-from django.urls import path, include, reverse
-from Log.views import * #index_view, projects_view, add_project_view
+from django.urls import include
+from Log.views import *
 from martor.urls import *
 
 urlpatterns = [
@@ -27,8 +26,9 @@ urlpatterns = [
     path('accounts/login/', LoginView.as_view(
             template_name='registration/login.html',
         ),
-        name = 'login',
+        name='login',
         ),
+    path('accounts/profile/', login_required(profile_view), name='profile'),
     path('accounts/logout/', login_required(LogoutView.as_view()), name='logout'),
     path('projects/', login_required(projects_view), name='projects'),
     path('projects/add/', login_required(add_project_view), name='add-project'),
@@ -42,9 +42,8 @@ urlpatterns = [
 ]
 
 
-#make it possible to serve files in debug mode locally
+# make it possible to serve files in debug mode locally
 if settings.DEBUG is True:
     # static files (images, css, javascript, etc.)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-

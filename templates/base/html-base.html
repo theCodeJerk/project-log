@@ -75,17 +75,7 @@ of the rendered html, right before the ```</body>``` tag.
     {% block body %}
         <body>
             {% block site %}
-                    {% block messages %}
-                        {% if messages %}
-                            {% for message in messages %}
-                                <div class="alert alert-{{ message.tags }}">  <!-- singular -->
-                                    <a class="close" data-dismiss="alert">×</a>
-                                    {{ message|safe }}
-                                </div>
-                            {% endfor %}
-                        {% endif %}
-                    {% endblock %}
-                    {% block content %}{% endblock %}
+                {% block content %}{% endblock %}
             {% endblock %}
             {% block martor-scripts %}
                 <script type="text/javascript" src="{% static 'plugins/js/ace.js' %}"></script>
