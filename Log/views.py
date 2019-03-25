@@ -1,13 +1,13 @@
 import json
 import os
 import uuid
+from django.contrib import messages
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from martor.utils import LazyEncoder
 from django.conf import settings
-from Log.models import LogEntry, Project
 from Log.forms import *
 from django.utils.translation import ugettext_lazy as _
 
@@ -18,12 +18,34 @@ def index_view(request):
         if form.is_valid():
             form.save()
 
+    projects = Project.objects.filter(user=request.user).all()
+    filter_list = request.GET.getlist('show-project')
+    entries = LogEntry.objects.filter(user=request.user).all()
+
     context = {'form': NewEntryForm(initial={'user': request.user}),
                'title': 'Project Log',
-               'logentries': LogEntry.objects.filter(user=request.user).all(),
+               'logentries': entries,
                'user': request.user,
+               'projects': projects,
+               'filter_list': filter_list,
                }
     return render(request, 'pages/index.html', context)
+
+
+def profile_view(request):
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Your Profile Has Been Updated.")
+        else:
+            messages.error(request, 'Your Profile Could Not Be Saved.')
+
+    context = {'form': EditProfileForm(instance=request.user),
+               'title': 'Profile',
+               'user': request.user,
+               }
+    return render(request, 'registration/profile.html', context)
 
 
 def projects_view(request):

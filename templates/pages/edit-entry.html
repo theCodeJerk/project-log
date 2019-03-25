@@ -4,5 +4,11 @@
 {% block page %}
     <h1>Edit Entry</h1>
     {% include 'partials/logentry-listitem.html' %}
-    {% include 'partials/entry-panel.html' with button_name='Update Entry' csrf_token=csrf_token %}
+    <div class="container-fluid input-group input-group-sm entry-panel" id="entry-panel">
+        <form class="ui form" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_table }}
+            <button>Update Entry</button>
+        </form>
+    </div>
 {% endblock %}

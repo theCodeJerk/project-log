@@ -1,6 +1,27 @@
 from django import forms
+from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth.models import User
 from Log.models import LogEntry, Project
 from martor.fields import MartorFormField
+
+
+class EditProfileForm(UserChangeForm):
+    def __init__(self, *args, **kwargs):
+        super(EditProfileForm, self).__init__(*args, **kwargs)
+        instance = getattr(self, 'instance', None)
+        if instance and instance.id:
+            self.fields['username'].widget.attrs['readonly'] = True
+
+    def clean_username(self):
+        instance = getattr(self, 'instance', None)
+        if instance and instance.id:
+            return instance.username
+        else:
+            return self.cleaned_data['username']
+
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'first_name', 'last_name', )
 
 
 class NewEntryForm(forms.ModelForm):

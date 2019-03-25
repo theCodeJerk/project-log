@@ -1,43 +1,47 @@
+<nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>Bootstrap Sidebar</h3>
+        </div>
 
-<div class="sidebar">
-    <nav class="sidebar-nav">
-        <ul class="nav">
-            <li class="nav-title">Project Log</li>
-            {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link" href="">
-                        <i class="nav-icon cui-speedometer"></i>Welcome {{ user.username }}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'index' %}">
-                        <i class="nav-icon cui-speedometer"></i>Entries
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'projects' %}">
-                        <i class="nav-icon cui-speedometer"></i>Projects
-                    </a>
-                    <ul class="nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'add-project' %}">
-                                <i class="nav-icon cui-speedometer"></i>Add Project
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'logout' %}">
-                        <i class="nav-icon cui-speedometer"></i>Logout
-                    </a>
-                </li>
-            {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'login' %}">
-                        <i class="nav-icon cui-speedometer"></i>Login
-                    </a>
-                </li>
-            {% endif %}
+        <ul class="list-unstyled components">
+            <p>Dummy Heading</p>
+            <li class="active">
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <li>
+                        <a href="#">Home 1</a>
+                    </li>
+                    <li>
+                        <a href="#">Home 2</a>
+                    </li>
+                    <li>
+                        <a href="#">Home 3</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">About</a>
+            </li>
+            <li>
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
+                <ul class="collapse list-unstyled" id="pageSubmenu">
+                    <li>
+                        <a href="#">Page 1</a>
+                    </li>
+                    <li>
+                        <a href="#">Page 2</a>
+                    </li>
+                    <li>
+                        <a href="#">Page 3</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Portfolio</a>
+            </li>
+            <li>
+                <a href="#">Contact</a>
+            </li>
         </ul>
+
     </nav>
-</div>

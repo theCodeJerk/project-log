@@ -1,7 +1,61 @@
 {% extends 'base/page-base.html' %}
 {% load martortags %}
+{% load staticfiles %}
+{% load static %}
 
 {% block page %}
-    {% include 'partials/entry-panel.html' with button_name='Add Entry' csrf_token=csrf_token %}
+    <div id="accordion">
+        <div class="row">
+            <div class="col-sm-12">
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#entry-panel" aria-expanded="false" aria-controls="entry-panel">
+                    Add
+                </button>
+
+
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#filter-entries" aria-expanded="false" aria-controls="filter-entries">
+                    Filter
+                </button>
+            </div>
+        </div>
+
+        <div class="collapse" id="entry-panel" data-parent="#accordion">
+          <div class="card card-body">
+            <div class="container-fluid input-group input-group-sm entry-panel" id="entry-panel">
+                <form class="ui form" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_table }}
+                    <button>Add Entry</button>
+                </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="collapse" id="filter-entries" data-parent="#accordion">
+            <div class="card card-body">
+                <h3>Filter by Project:</h3>
+                <hr />
+                <form class="ui form" method="get" enctype="multipart/form-data">
+                    {% for project in projects %}
+                        <div class="form-check">
+                            {% if project.name in filter_list %}
+                                <input checked="checked" class="form-check-input" type="checkbox" value="{{ project }}" id="filter-project-{{ project }}" name="show-project">
+                            {% else %}
+                                <input class="form-check-input" type="checkbox" value="{{ project }}" id="filter-project-{{ project }}" name="show-project">
+                            {% endif %}
+                            <label class="form-check-label" for="filter-project-{{ project }}">
+                                {{ project }}
+                            </label>
+                        </div>
+                    {% endfor %}
+
+                    <hr />
+                    <p><i>Unchecking a Project will prevent its Entries from being displayed.</i></p>
+                    <button class="btn btn-primary" type="submit">
+                        Apply Filters
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
     {% include 'partials/logentries-list.html' %}
 {% endblock %}
