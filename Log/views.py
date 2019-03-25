@@ -18,10 +18,16 @@ def index_view(request):
         if form.is_valid():
             form.save()
 
+    projects = Project.objects.filter(user=request.user).all()
+    filter_list = request.GET.getlist('show-project')
+    entries = LogEntry.objects.filter(user=request.user).all()
+
     context = {'form': NewEntryForm(initial={'user': request.user}),
                'title': 'Project Log',
-               'logentries': LogEntry.objects.filter(user=request.user).all(),
+               'logentries': entries,
                'user': request.user,
+               'projects': projects,
+               'filter_list': filter_list,
                }
     return render(request, 'pages/index.html', context)
 

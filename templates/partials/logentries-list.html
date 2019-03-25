@@ -1,5 +1,7 @@
 {% load martortags %}
 
 {% for entry in logentries %}
-    {% include 'partials/logentry-listitem.html' %}
+    {% if entry.project.name in filter_list %}
+        {% include 'partials/logentry-listitem.html' %}
+    {% endif %}
 {% endfor %}
